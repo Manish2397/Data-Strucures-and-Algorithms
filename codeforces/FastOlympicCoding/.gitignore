@@ -1,0 +1,4 @@
+*.out
+*.pyc
+cmp_sense/amin.cpp
+.DS_Store
