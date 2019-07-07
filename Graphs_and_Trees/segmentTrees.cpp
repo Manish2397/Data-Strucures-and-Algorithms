@@ -23,12 +23,23 @@ void buildSegmentTree(int tree[],int values[],int index,int start,int end){
 	}
 }
 
+int minElementQuery(int tree[],int index,int start,int end,int qStart,int qEnd){
+	if(qStart>end or qEnd<start) return INT_MAX;
+	if(qStart<=start and qEnd>=end) return tree[index];
+	
+	int mid = (start+end)/2;
+	int left = minElementQuery(tree,2*index,start,mid,qStart,qEnd);
+	int right = minElementQuery(tree,2*index+1,mid+1,end,qStart,qEnd);
+	return min(left,right);
+	
+}
+
 int main(){
-	int values[] = {4,7,5,10,-2,6,-14,-8};
-	int size = 8;
+	int values[] = {1,3,2,-2,4,5};
+	int size = 6;
 	int *segmentTree = new int[4*size+1];
 	buildSegmentTree(segmentTree,values,1,0,size-1);
-	cout<<"minimum value is : "<<segmentTree[1];
-
+	cout<<"minimum value is : "<<segmentTree[1]<<endl;
+	cout<<minElementQuery(segmentTree,1,0,size-1,2,3);
 	return 0;
 }
