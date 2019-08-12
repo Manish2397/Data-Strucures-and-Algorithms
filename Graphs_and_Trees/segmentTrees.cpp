@@ -6,6 +6,37 @@
 using namespace std;
 
 
+void updateRange(int tree[],int s,int e,int index,int qs,int qe,int inc){
+	if(s>qe or e<qs){
+		return;
+	}
+	if(s==e){
+		tree[index]+=inc;
+		return;
+	}
+
+	int mid = (s+e)/2;
+	updateRange(tree,s,mid,2*index,qs,qe,inc);
+	updateRange(tree,mid+1,e,2*index+1,qs,qe,inc);
+	tree[index] = min(tree[2*index],tree[2*index+1]);
+	return;
+}
+
+
+void updateNode(int tree[],int s,int e,int index,int ind,int val){
+	if(ind<s or ind>e) return;
+	else if(s==e){
+		tree[index] = val;
+		return;
+	}
+	//left subtree call
+	int mid = (s+e)/2;
+	updateNode(tree,s,mid,2*index,ind,val);
+	updateNode(tree,mid+1,e,2*index+1,ind,val);
+	tree[index] = min(tree[2*index],tree[2*index+1]);
+	return;
+}
+
 void buildSegmentTree(int tree[],int values[],int index,int start,int end){
 	if(start>end) return;
 	if(start==end){
@@ -40,6 +71,9 @@ int main(){
 	int *segmentTree = new int[4*size+1];
 	buildSegmentTree(segmentTree,values,1,0,size-1);
 	cout<<"minimum value is : "<<segmentTree[1]<<endl;
-	cout<<minElementQuery(segmentTree,1,0,size-1,2,3);
+	cout<<minElementQuery(segmentTree,1,0,size-1,0,5)<<endl;
+	updateNode(segmentTree,0,5,1,5,-8);
+	updateRange(segmentTree,0,5,1,0,3,-10);
+	cout<<minElementQuery(segmentTree,1,0,size-1,0,5)<<endl;
 	return 0;
 }
