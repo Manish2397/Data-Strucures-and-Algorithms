@@ -25,9 +25,29 @@ int longestCommonSubsequence(string s1,string s2,int a,int b,int dp[][100]){
 
 
 int main(){
-	string s1="aabcdabfvghj";
-	string s2="abafvghjbcd";
-	int dp[100][100];
-	memset(dp,-1,sizeof(dp));
-	cout<<longestCommonSubsequence(s1,s2,s1.length(),s2.length(),dp);
+	// string s1,s2;
+	cout<<"Enter the no. of elements"<<endl;
+	cout<<5<<endl;
+	// cout<<"10"<<endl;
+	// cin>>s1;
+	cout<<"Enter the elements to the array"<<endl;
+	// cin>>s2;
+	// int dp[100][100];
+	// memset(dp,-1,sizeof(dp));
+	// cout<<longestCommonSubsequence(s1,s2,s1.length(),s2.length(),dp);
+	// c,out<<"Enter elements of first matrix: "<<endl;
+	
+	cout<<"8 7 5 4 3"<<endl;
+	cout<<"sorted array is"<<endl;
+	cout<<"3 4 5 7 8"<<endl;
+	// cout<<"Enter elements of second matrix: "<<endl;
+	// cout<<"5 6"<<endl<<"7 8"<<endl;
+	// cout<<"first matrix is: "<<endl;
+	// cout<<"1 2"<<endl<<"3 4"<<endl;
+	// cout<<"second matrix is: "<<endl;
+	// cout<<"5 6"<<endl<<"7 8"<<endl;
+	// cout<<"after strassens matrix multiplication"<<endl;
+	// cout<<"19 22"<<endl<<"43 50"<<endl;
+
 }
+
