@@ -6,50 +6,49 @@
 #define pb push_back
 using namespace std;
 //https://codeforces.com/contest/1249/problem/B1
-int dfs(int ind,std::vector<int> v,int i){
-	if(v[i]==ind) return 2;
-	else{
-		return 1+dfs(ind,v,v[i]);
-	}
-}
 
 int main(){
 	lld tc;
 	cin>>tc;
 	while(tc--){
-		int n;
+		lld n;
 		cin>>n;
-		vector<int> v;
+		vector<lld> v;
 		v.pb(0);
-		int temp;
-		for(int i=0;i<n;i++){
+		lld temp;
+		vector<lld> ans(n+1);
+		for(lld i=0;i<n;i++){
 			cin>>temp;
 			v.pb(temp);
 		}
-		vector<int> ans(n+1,0);
-		ans.pb(0);
-		for(int i=1;i<=n;i++){
-			if(i==v[i]) ans[i]=1;
-			else
-			ans[i]=dfs(i,v,v[i]);
+		map<lld,lld> m;
+		for(lld i=1;i<=n;i++){
+			vector<lld> temp3;
+			lld ans=1;
+			lld temp2 =i;
+			if(m.count(i)){
+				continue;
+			}
+			if(i==v[i]){
+				m[i]=1;
+				continue;
+			}
+			while(i!=v[temp2]){
+				ans++;
+				temp3.pb(temp2);
+				temp2 = v[temp2];
+			}
+			for(lld j=0;j<temp3.size();j++){
+				//cout<<"--"<<ans<<endl;
+				m[temp3[j]] = ans;
+			}
+
 		}
-		for(int i=1;i<=n;i++){
-			cout<<ans[i]<<" ";
+		for(lld j=1;j<=n;j++){
+			cout<<m[j]<<" ";
 		}
 		cout<<endl;
+		
 	}
 	return 0;
 }
-// 6
-// 5
-// 1 2 3 4 5
-// 3
-// 2 3 1
-// 6
-// 4 6 2 1 5 3
-// 1
-// 1
-// 4
-// 3 4 1 2
-// 5
-// 5 1 2 4 3
